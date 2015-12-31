@@ -8,12 +8,16 @@
 
 #import "MSPhotoScrollerViewController.h"
 
-static NSString * const MSObservedKeyPath = @"imageView.image";
+static CGFloat const defaultTopBottomViewHeight = 44;
 
 @interface MSPhotoScrollerViewController () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIScrollView *scrollView;
+
+@property (nonatomic, strong) UIView * topView;
+@property (nonatomic, strong) UIView * bottomView;
+
 @end
 
 @implementation MSPhotoScrollerViewController
@@ -25,8 +29,12 @@ static NSString * const MSObservedKeyPath = @"imageView.image";
     self.view.backgroundColor = [UIColor blackColor];
     
     [self.scrollView addSubview:self.imageView];
+    
     [self.view addSubview:self.scrollView];
     
+    [self.view addSubview:self.topView];
+    
+    [self.view addSubview:self.bottomView];
     
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
     doubleTap.numberOfTapsRequired = 2;
@@ -53,6 +61,41 @@ static NSString * const MSObservedKeyPath = @"imageView.image";
     if (self.configureImageViewBlock) {
         self.configureImageViewBlock(self.imageView);
     }
+    
+    if (self.fetchTopViewHeightBlock) {
+        
+        CGFloat height = self.fetchTopViewHeightBlock()?:defaultTopBottomViewHeight;
+        CGRect frame = self.topView.frame;
+        frame.size.height = height;
+        self.topView.frame = frame;
+    }
+    
+    if (self.fetchBottomViewHeightBlock) {
+        
+        CGFloat height = self.fetchBottomViewHeightBlock()?:defaultTopBottomViewHeight;
+        CGRect frame = self.bottomView.frame;
+        frame.origin.y = self.view.frame.size.height-height;
+        frame.size.height = height;
+        self.bottomView.frame = frame;
+    }
+    if (self.fetchTopViewBlock) {
+        //移除
+        for (UIView * view in self.topView.subviews) {
+            [view removeFromSuperview];
+        }
+        UIView * top = self.fetchTopViewBlock();
+        top.frame = self.topView.bounds;
+        [self.topView addSubview:top];
+    }
+    if (self.fetchBottomViewBlock) {
+        for (UIView * view in self.bottomView.subviews) {
+            [view removeFromSuperview];
+        }
+        UIView * bottom = self.fetchBottomViewBlock();
+        bottom.frame = self.bottomView.bounds;
+        [self.bottomView addSubview:bottom];
+    }
+    
 
 }
 
@@ -193,6 +236,32 @@ static NSString * const MSObservedKeyPath = @"imageView.image";
         _scrollView.delegate = self;
     }
     return _scrollView;
+}
+- (UIView *)topView{
+    if (!_topView) {
+        _topView = [[UIView alloc]init];
+        _topView.backgroundColor = [UIColor clearColor];
+        CGRect frame ;
+        frame.origin.y = 20;
+        frame.size.height = defaultTopBottomViewHeight;
+        frame.size.width = self.view.bounds.size.width;
+        _topView.frame = frame;
+        
+    }
+    return _topView;
+}
+- (UIView *)bottomView{
+    if (!_bottomView) {
+        _bottomView = [[UIView alloc]init];
+        _bottomView.backgroundColor = [UIColor clearColor];
+        CGRect frame ;
+        frame.origin.y = self.view.bounds.size.height - defaultTopBottomViewHeight;
+        frame.size.height = defaultTopBottomViewHeight;
+        frame.size.width = self.view.bounds.size.width;
+        _bottomView.frame = frame;
+        
+    }
+    return _bottomView;
 }
 
 @end
