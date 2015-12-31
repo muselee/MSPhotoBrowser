@@ -8,9 +8,6 @@
 
 #import "MSPhotoBrowserViewController.h"
 #import "MSPhotoScrollerViewController.h"
-
-static CGFloat const defaultTopBottomViewHeight = 44;
-
 #ifndef weakify
     #if DEBUG
         #if __has_feature(objc_arc)
@@ -199,7 +196,7 @@ static CGFloat const defaultTopBottomViewHeight = 44;
             imageScrollerViewController.fetchBottomViewHeightBlock = ^CGFloat(void) {
                 @strongify(self)
                 CGFloat height = [self.ms_delegate viewController:self heightForBottomViewAtIndex:page];
-                return height?:defaultTopBottomViewHeight;
+                return height;
             };
         }
         

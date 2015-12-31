@@ -237,6 +237,7 @@ static CGFloat const defaultTopBottomViewHeight = 44;
     }
     return _scrollView;
 }
+
 - (UIView *)topView{
     if (!_topView) {
         _topView = [[UIView alloc]init];
@@ -250,6 +251,7 @@ static CGFloat const defaultTopBottomViewHeight = 44;
     }
     return _topView;
 }
+
 - (UIView *)bottomView{
     if (!_bottomView) {
         _bottomView = [[UIView alloc]init];
