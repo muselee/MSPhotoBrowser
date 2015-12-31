@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="utc-Nq-72w">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H5Y-VR-Zh5">
+                                <rect key="frame" x="236" y="285" width="128" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1Se-C1-OX9"/>
+                                    <constraint firstAttribute="width" constant="128" id="JVi-De-OsU"/>
+                                </constraints>
+                                <state key="normal" title="present图片"/>
+                                <connections>
+                                    <action selector="present:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Um5-lK-WvP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="H5Y-VR-Zh5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Jih-C0-RQJ"/>
+                            <constraint firstItem="H5Y-VR-Zh5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YKm-XR-CYa"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="kG6-1r-Q7G"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1712" y="357"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="sUE-Zl-V5W">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="utc-Nq-72w" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Q6L-T1-nZh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <outlet property="delegate" destination="myP-Bs-6NZ" id="JB9-uj-hiH"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="h6E-VX-YDt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W2d-nj-lgm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="myP-Bs-6NZ" customClass="MSControllerTransitioningDelegate"/>
+            </objects>
+            <point key="canvasLocation" x="1043" y="363"/>
+        </scene>
+    </scenes>
+</document>
