@@ -85,16 +85,16 @@ static MSControllerTransitioningDelegate *_defaultManager = nil;
     return self;
 }
 
-- (MSTransitionsData *)animationController:(id<MSAnimationControllerProtocol>)animationController
+- (void)animationController:(id<MSAnimationControllerProtocol>)animationController
                           fromViewController:(Class)fromViewController
                                    forAction:(MSTransitionAction)action{
-    return [self animationController:animationController
+     [self animationController:animationController
                      fromViewController:fromViewController
                        toViewController:nil
                               forAction:action];
 }
 
-- (MSTransitionsData *)animationController:(id<MSAnimationControllerProtocol>)animationController
+- (void )animationController:(id<MSAnimationControllerProtocol>)animationController
                           fromViewController:(Class)fromViewController
                             toViewController:(Class)toViewController
                                    forAction:(MSTransitionAction)action{
@@ -114,14 +114,12 @@ static MSControllerTransitioningDelegate *_defaultManager = nil;
        
     }
     
-    return keyValue;
 }
 
-- (MSTransitionsData *)interactionController:(id<MSTransitionInteractionControllerProtocol>)interactionController
+- (void)interactionController:(id<MSTransitionInteractionControllerProtocol>)interactionController
                             fromViewController:(Class)fromViewController
                               toViewController:(Class)toViewController
                                      forAction:(MSTransitionAction)action{
-    MSTransitionsData *keyValue = nil;
     
     for ( NSUInteger x = 1; (x < (1 << (kMSTransitionActionCount - 1)));  x <<= 1) {
         if ( action & x ) {
@@ -138,7 +136,6 @@ static MSControllerTransitioningDelegate *_defaultManager = nil;
         }
     }
     
-    return keyValue;
 }
 
 - (void)overrideAnimationDirection:(BOOL)isOverride withTransition:(MSTransitionsData *)transitionKey{

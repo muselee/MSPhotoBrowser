@@ -60,6 +60,20 @@
     [viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (CGFloat)viewController:(MSPhotoBrowserViewController *)viewController heightForBottomViewAtIndex:(NSInteger)index {
+    return 44;
+}
+
+- (UIView *)viewController:(MSPhotoBrowserViewController *)viewController bottomViewForPageAtIndex:(NSInteger)index{
+    
+    UILabel * label = [[UILabel alloc]init];
+    label.backgroundColor= [UIColor clearColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor whiteColor];
+    label.text = [NSString stringWithFormat:@"%ld / %lu",(long)index+1,(unsigned long)_images.count];
+    return label;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

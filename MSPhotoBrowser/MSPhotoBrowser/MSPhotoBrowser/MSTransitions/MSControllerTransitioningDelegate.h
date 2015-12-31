@@ -78,19 +78,19 @@ typedef NS_ENUM (NSInteger, MSTransitionAction) {
 + (instancetype)shareInstance;
 
 //初始化动画转场
-- (MSTransitionsData * )animationController:(id<MSAnimationControllerProtocol>)animationController
+- (void )animationController:(id<MSAnimationControllerProtocol>)animationController
                                    fromViewController:(Class )fromViewController
                                             forAction:(MSTransitionAction)action;
 
 
-- (MSTransitionsData * )animationController:(id<MSAnimationControllerProtocol>)animationController
+- (void )animationController:(id<MSAnimationControllerProtocol>)animationController
                                     fromViewController:(Class)fromViewController
                                       toViewController:(Class)toViewController
                                              forAction:(MSTransitionAction)action;
 
 
 //初始化交互转场
-- (MSTransitionsData * )interactionController:(id<MSTransitionInteractionControllerProtocol>)interactionController
+- (void )interactionController:(id<MSTransitionInteractionControllerProtocol>)interactionController
                                       fromViewController:(Class)fromViewController
                                         toViewController:(Class)toViewController
                                                forAction:(MSTransitionAction)action;
