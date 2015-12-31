@@ -61,7 +61,7 @@
 }
 
 - (CGFloat)viewController:(MSPhotoBrowserViewController *)viewController heightForBottomViewAtIndex:(NSInteger)index {
-    return 44;
+    return 60;
 }
 
 - (UIView *)viewController:(MSPhotoBrowserViewController *)viewController bottomViewForPageAtIndex:(NSInteger)index{

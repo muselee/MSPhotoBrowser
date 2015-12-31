@@ -226,6 +226,7 @@ static CGFloat const defaultTopBottomViewHeight = 44;
             //给底部视图修改高度
             CGRect frame = self.bottomView.frame;
             frame.size.height = bottomHeight;
+            frame.origin.y = self.view.frame.size.height- bottomHeight;
             self.bottomView.frame = frame;
 
             UIView * bottomView = [self.ms_delegate viewController:self bottomViewForPageAtIndex:page];
